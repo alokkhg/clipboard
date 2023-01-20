@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  backend:
+    build: .
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - 8080:8080
+    environment:
+      - JWTSECRETS=testsecret
+
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: test
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - 8080:8080
+    environment:
+      - JWTSECRETS=testsecret
